@@ -29,12 +29,16 @@ def yes_no(question):
         else:
             print("Please enter yes or no")
 
-def show_instructions ():
-    print("*** How to Play the Lucky Unicorn game")
-    print()
-    print("The rules of the game are")
-    print()
-
+def instructions ():
+    print("              *** How to Play the Lucky Unicorn game ***                ")
+    print("                  *** The rules of the game are ***"                     )
+    print("*** To play you must enter the amount of money you wish to play with ***")
+    print("          *** This amount must be between 1 and 10 dollars ***          ")
+    print("                      *** Each game costs $1 ***                        ")
+    print("         *** Every game you are given 1 of 4 random tokens ***          ")
+    print("        *** And each will give you a certain amount of money ***        ")
+    print(" *** Unicorn gives $4, Horse and Zebra give $0.50 and Donkey give $0 ***")
+    print("  *** You can quit at anytime but if you run out of money you lose ***  ")
 
 
 # Main routine
@@ -45,6 +49,9 @@ print("Welcome to the Lucky Unicorn Game")
 
 # ask user if played_before
 played_before = yes_no("Have you played the game before? ")
+
+if played_before == "no":
+    instructions()
 
 # Ask user how much
 how_much = number_check("How much would you like to play with?", 1, 10)
