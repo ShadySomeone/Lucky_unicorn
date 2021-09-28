@@ -1,20 +1,22 @@
 import random
 
+
 # Functions
-def number_check(question,low,high):
+def number_check(question):
     error = "Please enter a whole number between 1 and 10"
 
     valid = False
     while not valid:
         try:
-            response = int(input("How much would you like to play with? "))
+            response = int(input(question))
             if 0 < response <= 10:
-                print("You have asked to play with ${}".format(response))
+                return response
             else:
                 print(error)
 
         except ValueError:
-                print(error)
+            print(error)
+
 
 def yes_no(question):
     valid = False
@@ -29,9 +31,10 @@ def yes_no(question):
         else:
             print("Please enter yes or no")
 
-def instructions ():
+
+def instructions():
     print("              *** How to Play the Lucky Unicorn game ***                ")
-    print("                  *** The rules of the game are ***"                     )
+    print("                  *** The rules of the game are ***                     ")
     print("*** To play you must enter the amount of money you wish to play with ***")
     print("          *** This amount must be between 1 and 10 dollars ***          ")
     print("                      *** Each game costs $1 ***                        ")
@@ -40,23 +43,39 @@ def instructions ():
     print(" *** Unicorn gives $4, Horse and Zebra give $0.50 and Donkey give $0 ***")
     print("  *** You can quit at anytime but if you run out of money you lose ***  ")
 
-
 # Main routine
 balance = 0
 rounds_played = 0
 
 print("Welcome to the Lucky Unicorn Game")
 
-# ask user if played_before
+# Ask user if played_before
 played_before = yes_no("Have you played the game before? ")
 
 if played_before == "no":
     instructions()
-
 # Ask user how much
-how_much = number_check("How much would you like to play with?", 1, 10)
+how_much = number_check("How much would you like to play with?")
 balance = how_much
+print("You have asked to play with ${}".format(how_much))
 
-# token generator
 
+# Generate a Token
+tokens = ["Unicorn", "Horse", "Zebra", "Donkey"]
+selected_token = random.choice(tokens)
+print(selected_token)
+balance -= 1
 
+# Ask user if they wish to play again
+if selected_token == "Unicorn":
+    balance += 4
+    print("You got a Unicorn! You now have ${}".format(balance))
+elif selected_token == "Horse":
+    balance += 0.50
+    print("You got a Horse! you now have ${}".format(balance))
+elif selected_token == "Zebra":
+    balance += 0.50
+    print("You got a Zebra! You now have ${}".format(balance))
+else:
+    balance += 0
+    print("Oh no, You got a Donkey! You now have ${}".format(balance))
